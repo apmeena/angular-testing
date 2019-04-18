@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Angular App</span>
+        <span class="example-spacer"></span>
+        <mat-form-field [floatLabel]="'never'">
+            <input matInput placeholder="Search" [(ngModel)]="searchedTerm" autocomplete="off">
+        </mat-form-field>
+        <button mat-raised-button style="margin-left:20px;" (click)="logout()">Logout</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="example-card" *ngFor="let user of users | filter: 'name': searchedTerm">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+            <span [innerHTML]="user.name | highlight: searchedTerm"></span>
+        </mat-card-title>
+        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            Phone: {{user.phone}}
+        </p>
+        <p>
+           Website: {{user.website}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button color="primary" routerLink="/users/{{user.id}}" mat-button>More Details</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,32 @@
+<div fxLayout class="page-container">
+  <div fxFlex="1 1 300px" class="login-box">
+    <mat-card class="example-card">
+      <h4>Login</h4>
+      <mat-card-content>
+        <form class="example-form">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Username" [(ngModel)]="user.username" name="username" required
+                    autocomplete="off">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Password" [(ngModel)]="user.password" type="password" name="password"
+                    required autocomplete="off">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="example-full-width" mat-raised-button (click)="login()" color="primary">Login</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
