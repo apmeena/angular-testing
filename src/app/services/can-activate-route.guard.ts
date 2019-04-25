@@ -1,17 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-    CanActivate,
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot,
-    Router
-} from '@angular/router';
+import { CanActivate } from '@angular/router';
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
 
-    constructor(private router: Router) { }
+    constructor() { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    canActivate(): boolean {
         return localStorage.getItem('isLoggedIn') ? true : false;
     }
 }

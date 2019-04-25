@@ -17,9 +17,7 @@ describe('UserService', () => {
     });
   });
 
-  it(
-    'should get users',
-    inject(
+  it('should get all users', inject(
       [HttpTestingController, UserService],
       (httpMock: HttpTestingController, UserService: UserService) => {
         const mockUsers = [
@@ -44,4 +42,35 @@ describe('UserService', () => {
       }
     )
   );
+
+
+  it('should get single user by id', inject(
+    // HttpTestingController is a controller
+    // to be injected into tests, that allows for mocking and flushing of requests.
+    [HttpTestingController, UserService],
+    (httpMock: HttpTestingController, UserService: UserService) => {
+      const mockUser = { name: 'Bob', website: 'www.yessss.com' };
+
+      UserService.getUserById('1').subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Response:
+            expect(event.body).toEqual(mockUser);
+        }
+      });
+
+      // expectOne expect that a single request has been made
+      // which matches the given URL, and return its mock.
+      const mockReq = httpMock.expectOne(UserService.url + '1');
+
+      expect(mockReq.cancelled).toBeFalsy();
+      expect(mockReq.request.responseType).toEqual('json');
+      mockReq.flush(mockUser);
+
+      // we call the verify method on our HttpTestingController instance 
+      // to ensure that there are no outstanding requests to be made.
+      httpMock.verify();
+    }
+  )
+);
+
 });

@@ -1,8 +1,6 @@
 import { HighlightPipe } from './highlight-text.pipe';
 import { DomSanitizer } from '@angular/platform-browser';
 import { inject } from '@angular/core/testing';
-import { SecurityContext } from '@angular/core';
-
 
 describe('HighlightPipe', () => {
   let highlightPipe: HighlightPipe;
